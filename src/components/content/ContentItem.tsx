@@ -58,11 +58,11 @@ const EventItem = ({ event }: { event: Event }) => {
 
     return (
       <div className="flex flex-col">
-        <p className="text-center leading-[1.75rem] font-bold text-[25px] text-[#E83C3C]">
+        <p className="text-center leading-[1.75rem] font-bold font-sans text-[25px] text-[#E83C3C]">
           {day}
         </p>
 
-        <p className="text-center leading-[1.75rem] font-bold text-[25px] text-[#E83C3C]">
+        <p className="text-center leading-[1.75rem] font-bold font-sans text-[25px] text-[#E83C3C]">
           {month}
         </p>
       </div>
@@ -76,20 +76,24 @@ const EventItem = ({ event }: { event: Event }) => {
     >
       <div className="flex flex-row w-full items-center">
         <Image
-          src="images/event_line.svg"
+          src={
+            event.title == "היום"
+              ? "images/event_only_circle.svg"
+              : "images/event_line.svg"
+          }
           alt="event_line"
           width={184}
           height={124}
         />
 
         <div className="w-[40rem] mr-[0.5rem]">
-          <p className="text-[28px] text-[#EB4747] font-bold">{event.title}</p>
+          <p className="text-[28px] text-[#EB4747] font-bold font-sans">
+            {event.title != "היום" && event.title}
+          </p>
         </div>
 
         <div className="relative w-[8rem] left-[41.5rem]">
-          <p className="text-center leading-[1.75rem] font-bold text-[25px] text-[#E83C3C]">
-            {convertDate(event.date)}
-          </p>
+          {event.title == "היום" ? "היום" : convertDate(event.date)}
         </div>
       </div>
     </div>
@@ -110,7 +114,7 @@ const ArticleItem = ({ article }: { article: Article }) => {
           height={40}
         />
 
-        <div className="relative w-[40rem] h-[80%] border-[#E83C3C] border-2 rounded-[30px]">
+        <div className="relative w-[30rem] h-[80%] border-[#E83C3C] border-2 rounded-[30px]">
           {/* <ArticleWrapper article={article} /> */}
         </div>
       </div>

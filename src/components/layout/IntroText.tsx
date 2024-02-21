@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 import { doc, onSnapshot } from "firebase/firestore";
 
@@ -26,7 +25,7 @@ const IntroText = () => {
   }
 
   return (
-    <p className="text-[32px] font-md text-black leading-tight">
+    <p className="text-[24px] font-thin text-black leading-tight font-sans">
       {details.header.text}
     </p>
   );

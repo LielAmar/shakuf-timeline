@@ -49,7 +49,7 @@ const Header = () => {
       className={`w-[70%] mr-[6rem] py-3
         flex flex-row flex-center fixed top-0 right-0
         transition-all duration-300 border-b-[4px] border-black
-        from-white z-50
+        bg-gradient-to-b from-white via-white to-transparent z-50
         ${hasMargin && "mt-10"}`}
     >
       <div className="flex flex-row items-center gap-3 mr-[3rem]">
@@ -61,7 +61,9 @@ const Header = () => {
           height={48}
         />
 
-        <p className="text-[36px] font-bold text-black">{details.page_title}</p>
+        <p className={`text-[36px] font-bold text-black font-serif`}>
+          {details.page_title}
+        </p>
       </div>
     </div>
   );

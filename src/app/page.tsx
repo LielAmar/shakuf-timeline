@@ -9,7 +9,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col justify-between mr-[6rem] overscroll-auto">
       <Header />
 
-      <div className="flex flex-row justify-between mt-[10rem] mr-[3rem]">
+      <div className="flex flex-row justify-between mt-[8.5rem] mr-[3rem]">
         <div className="flex flex-col w-[70%] gap-10">
           <IntroText />
           <ArticlesWrapper />
