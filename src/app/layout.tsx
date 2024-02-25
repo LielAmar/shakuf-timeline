@@ -50,24 +50,54 @@ const narkis = localFont({
 const narkis_block = localFont({
   src: [
     {
-      path: "../../public/fonts/NarkisBlockStudio-Bold.ttf",
+      path: "../../public/fonts/MF_NarkisBlock-Bold.otf",
       weight: "700",
     },
     {
-      path: "../../public/fonts/NarkisBlockStudio-Medium.ttf",
+      path: "../../public/fonts/MF_NarkisBlock-BoldCondensed.otf",
+      weight: "600",
+    },
+    {
+      path: "../../public/fonts/MF_NarkisBlock-Medium.otf",
       weight: "500",
     },
     {
-      path: "../../public/fonts/NarkisBlockStudio-Regular.ttf",
+      path: "../../public/fonts/MF_NarkisBlock-MediumCondensed.otf",
+      weight: "500",
+    },
+    {
+      path: "../../public/fonts/MF_NarkisBlock-Regular.otf",
       weight: "400",
     },
     {
-      path: "../../public/fonts/NarkisBlockStudio-Thin.ttf",
+      path: "../../public/fonts/MF_NarkisBlock-Thin.otf",
       weight: "300",
     },
   ],
   variable: "--font-narkis-block",
 });
+
+// const narkis_block = localFont({
+//   src: [
+//     {
+//       path: "../../public/fonts/NarkisBlockStudio-Bold.ttf",
+//       weight: "700",
+//     },
+//     {
+//       path: "../../public/fonts/NarkisBlockStudio-Medium.ttf",
+//       weight: "500",
+//     },
+//     {
+//       path: "../../public/fonts/NarkisBlockStudio-Regular.ttf",
+//       weight: "400",
+//     },
+//     {
+//       path: "../../public/fonts/NarkisBlockStudio-Thin.ttf",
+//       weight: "300",
+//     },
+//   ],
+//   variable: "--font-narkis-block",
+// });
 
 export const metadata: Metadata = {
   title: "Shakuf Timeline",
