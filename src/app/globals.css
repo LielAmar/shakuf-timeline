@@ -9,3 +9,117 @@
   :root {
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+  }
+}
+/* 
+@font-face {
+  font-family: "Days";
+  src: url("/images/Days-Regular.otf") format("otf");
+} */
+
+/* @layer base {
+  @font-face {
+    font-family: Days;
+    font-weight: 400;
+    src: url(/fonts/Days-Regular.otf) format("otf");
+  }
+  @font-face {
+    font-family: Days;
+    font-weight: 800;
+    src: url(/fonts/Days-Bold.otf) format("otf");
+  }
+  @font-face {
+    font-family: Days Nights;
+    font-weight: 400;
+    src: url(/fonts/Days-Nights.otf) format("otf");
+  }
+  @font-face {
+    font-family: Days Nights;
+    font-weight: 800;
+    src: url(/fonts/Days-NightsBold.otf) format("otf");
+  }
+
+  @font-face {
+    font-family: MF NarkisBlock;
+    font-weight: 800;
+    src: url(/fonts/MF_NarkisBlock-Bold.otf) format("otf");
+  }
+  @font-face {
+    font-family: MF NarkisBlock;
+    font-weight: 700;
+    src: url(/fonts/MF_NarkisBlock-BoldCondensed.otf) format("otf");
+  }
+  @font-face {
+    font-family: MF NarkisBlock;
+    font-weight: 600;
+    src: url(/fonts/MF_NarkisBlock-Medium.otf) format("otf");
+  }
+  @font-face {
+    font-family: MF NarkisBlock;
+    font-weight: 500;
+    src: url(/fonts/MF_NarkisBlock-MediumCondensed.otf) format("otf");
+  } 
+  @font-face {
+    font-family: MF NarkisBlock;
+    font-weight: 400;
+    src: url(/fonts/MF_NarkisBlock-Regular.otf) format("otf");
+  }
+  @font-face {
+    font-family: MF NarkisBlock;
+    font-weight: 300;
+    src: url(/fonts/MF_NarkisBlock-Thin.otf) format("otf");
+  }
+  
+  @font-face {
+    font-family: NarkiBloConMed;
+    font-weight: 600;
+    src: url(/fonts/NarkiBloConMed.ttf) format("ttf");
+  }
+  @font-face {
+    font-family: NarkiBloConMed;
+    font-weight: 300;
+    src: url(/fonts/NarkiBloConThi.ttf) format("ttf");
+  }
+
+  @font-face {
+    font-family: NarkisBlockStudio;
+    font-weight: 800;
+    src: url(/fonts/NarkisBlockStudio-Bold.ttf) format("ttf");
+  }
+  @font-face {
+    font-family: NarkisBlockStudio;
+    font-weight: 600;
+    src: url(/fonts/NarkisBlockStudio-Medium.ttf) format("ttf");
+  }
+  @font-face {
+    font-family: NarkisBlockStudio;
+    font-weight: 400;
+    src: url(/fonts/NarkisBlockStudio-Regular.ttf) format("ttf");
+  }
+  @font-face {
+    font-family: NarkisBlockStudio;
+    font-weight: 300;
+    src: url(/fonts/NarkisBlockStudio-Thin.ttf) format("ttf");
+  }
+
+  @font-face {
+    font-family: VC NarkisBlock;
+    font-weight: 800;
+    src: url(/fonts/VC_NarkisBlock-Bold.ttf) format("otf");
+  }
+  @font-face {
+    font-family: VC NarkisBlock;
+    font-weight: 400;
+    src: url(/fonts/VC_NarkisBlock-Regular.ttf) format("otf");
+  }
+} */

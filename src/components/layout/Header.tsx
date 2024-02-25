@@ -9,8 +9,10 @@ import { db } from "@/config/firebase";
 import { DetailsScheme } from "@/types/schemes";
 
 const Header = () => {
+  const [hasMargin, setHasMargin] = useState<boolean>(true);
   const [details, setDetails] = useState<DetailsScheme | null>(null);
 
+  // Retrieve the details document from the database
   useEffect(() => {
     const details_document = doc(db, "shakuf", "details");
 
@@ -19,61 +21,50 @@ const Header = () => {
     });
   }, []);
 
+  // TODO: change date format from mm-dd-yy to dd/mm/yy
+
+  // Handle the scroll event
+  useEffect(() => {
+    const handleScrollEvent = () => {
+      console.log(window.scrollY);
+      if (window.scrollY > 50) {
+        setHasMargin(false);
+      } else {
+        setHasMargin(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScrollEvent);
+
+    return () => window.removeEventListener("scroll", handleScrollEvent);
+  }, []);
+
   if (!details) {
     // TODO: change this loading screel
     return <div>Getting content...</div>;
   }
 
   return (
-    // <div
-    //   className="grid grid-cols-9 grid-rows-2
-    //     self-start grid-flow-col place-items-center"
-    // >
-    //   <Image
-    //     className="col-start-1 col-end-1 row-start-1 row-end-1"
-    //     src={details.logo_url}
-    //     alt="logo"
-    //     width={75}
-    //     height={75}
-    //   />
-
-    //   <p
-    //     className="text-3xl font-bold break-all text-black w-[9rem]
-    //       col-start-2 col-end-2 row-start-1 row-end-1"
-    //   >
-    //     {details.page_title}
-    //   </p>
-
-    //   <p
-    //     className="text-s text-[#3477DD]
-    //       col-start-2 col-end-6 row-start-2 row-end-2"
-    //   >
-    //     {details.header.text}
-    //   </p>
-    // </div>
-
-    <div className="flex flex-col flex-start w-full">
-      <div className="flex flex-row items-start gap-10">
+    <div
+      className={`w-[70%] mr-[6rem] py-3
+        flex flex-row flex-center fixed top-0 right-0
+        transition-all duration-300 border-b-[4px] border-black
+        bg-gradient-to-b from-white via-white to-transparent z-50
+        ${hasMargin && "mt-10"}`}
+    >
+      <div className="flex flex-row items-center gap-3 mr-[3rem]">
         <Image
           className=""
           src={details.logo_url}
           alt="logo"
-          width={75}
-          height={75}
+          width={124}
+          height={48}
         />
 
-        <p className="text-3xl font-bold break-all text-black w-[9rem]">
+        <p className={`text-[36px] font-bold text-black font-serif`}>
           {details.page_title}
         </p>
       </div>
-
-      {/* TODO: break to two lines */}
-      <p className="w-2/5 text-xs mr-[7.25rem] mt-2 text-[#3477DD]">
-        {details.header.text}
-      </p>
-
-      {/* <div className="w-20"> */}
-      {/* </div> */}
     </div>
   );
 };
