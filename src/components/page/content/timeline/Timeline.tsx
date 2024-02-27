@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 
 import { db } from "@/config/firebase";
@@ -8,10 +8,9 @@ import { db } from "@/config/firebase";
 import { Content } from "@/types/content";
 import { Article } from "@/types/article";
 import { Event } from "@/types/event";
+import TimelineContent from "./TimelineContent";
 
-import ContentItem from "./ContentItem";
-
-const ArticlesWrapper = () => {
+const Timeline = () => {
   const [content, setContent] = useState<Content[] | null>(null);
 
   useEffect(() => {
@@ -40,12 +39,35 @@ const ArticlesWrapper = () => {
   }
 
   return (
-    <div className="mt-5 max-w-[75%]">
+    <div className="w-full">
       {content.map((contentPeice: Content, index: number) => {
-        return <ContentItem key={index} content={contentPeice} />;
+        if (index == 0)
+          return (
+            <TimelineContent
+              key={index}
+              content={contentPeice}
+              position={"first"}
+            />
+          );
+        else if (index == content.length - 1)
+          return (
+            <TimelineContent
+              key={index}
+              content={contentPeice}
+              position={"last"}
+            />
+          );
+        else
+          return (
+            <TimelineContent
+              key={index}
+              content={contentPeice}
+              position={null}
+            />
+          );
       })}
     </div>
   );
 };
 
-export default ArticlesWrapper;
+export default Timeline;

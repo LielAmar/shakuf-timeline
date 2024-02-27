@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 
 const days = localFont({
   src: [
@@ -53,18 +53,18 @@ const narkis_block = localFont({
       path: "../../public/fonts/MF_NarkisBlock-Bold.otf",
       weight: "700",
     },
-    {
-      path: "../../public/fonts/MF_NarkisBlock-BoldCondensed.otf",
-      weight: "600",
-    },
+    // {
+    //   path: "../../public/fonts/MF_NarkisBlock-BoldCondensed.otf",
+    //   weight: "600",
+    // },
     {
       path: "../../public/fonts/MF_NarkisBlock-Medium.otf",
       weight: "500",
     },
-    {
-      path: "../../public/fonts/MF_NarkisBlock-MediumCondensed.otf",
-      weight: "500",
-    },
+    // {
+    //   path: "../../public/fonts/MF_NarkisBlock-MediumCondensed.otf",
+    //   weight: "500",
+    // },
     {
       path: "../../public/fonts/MF_NarkisBlock-Regular.otf",
       weight: "400",

@@ -9,12 +9,15 @@ export type DetailsScheme = {
   logo_url: string;
 
   header: {
-    text: string;
+    start_text: string;
+    rest_text: string;
   }
 
   footer: {
     text: string;
   }
+
+  navbar: string[];
 }
 
 export type ContentScheme = {

@@ -25,8 +25,13 @@ const IntroText = () => {
   }
 
   return (
-    <p className="text-[24px] font-thin text-black leading-tight font-sans">
-      {details.header.text}
+    <p>
+      <span className="text-[28px] font-bold text-[#EE583F] leading-tight font-serif">
+        {details.header.start_text}
+      </span>
+      <span className="text-[24px] font-normal text-black leading-tight font-sans">
+        {details.header.rest_text}
+      </span>
     </p>
   );
 };
