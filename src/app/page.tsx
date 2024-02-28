@@ -9,6 +9,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { Article } from "@/types/article";
 import { Content } from "@/types/content";
+import Minimap from "@/components/page/content/minimap/Minimap";
 
 export default function Home() {
   const [details, setDetails] = useState<DetailsScheme | null>(null);
@@ -64,7 +65,7 @@ export default function Home() {
         </div>
 
         <div className="row-start-1 col-start-6 col-end-6">
-          <Minimap />
+          <Minimap content={content} />
         </div>
       </div>
     </main>
