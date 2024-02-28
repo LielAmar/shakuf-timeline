@@ -3,23 +3,10 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { doc, onSnapshot } from "firebase/firestore";
-
-import { db } from "@/config/firebase";
 import { DetailsScheme } from "@/types/schemes";
 
-const Navbar = () => {
+const Navbar = ({ details }: { details: DetailsScheme | null}) => {
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
-  const [details, setDetails] = useState<DetailsScheme | null>(null);
-
-  // Retrieve the details document from the database
-  useEffect(() => {
-    const details_document = doc(db, "shakuf", "details");
-
-    onSnapshot(details_document, (doc: any) => {
-      setDetails(doc.data());
-    });
-  }, []);
 
   // Handle the fixed navbar on scroll (Remove the margin at the lower part)
   useEffect(() => {
@@ -31,9 +18,8 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScrollEvent);
   }, []);
 
-  if (!details) {
-    // TODO: change this loading screel
-    return <div>Getting content...</div>;
+  if(!details) {
+    return <></>
   }
 
   return (
