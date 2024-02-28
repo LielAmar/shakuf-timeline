@@ -1,7 +1,8 @@
+import { useState } from "react";
+
 import Image from "next/image";
 
 import { Article } from "@/types/article";
-import { useState } from "react";
 
 const ArticleCard = ({
   article,
@@ -11,6 +12,8 @@ const ArticleCard = ({
   isOpen: boolean;
 }) => {
   const [isHovering, setIsHovering] = useState(true);
+  const [isSmallLoaded, setIsSmallLoaded] = useState(false);
+  const [isBigLoaded, setIsBigLoaded] = useState(false);
 
   return (
     <div
@@ -21,17 +24,19 @@ const ArticleCard = ({
       cursor-pointer`}
       onMouseEnter={() => setIsHovering(false)}
       onMouseLeave={() => setIsHovering(true)}
+      onClick={() => setIsHovering(true)}
     >
       {!isOpen && (
         <>
-          <div className="bg-red-600">
+          <div className={`${isSmallLoaded && "bg-red-600"}`}>
             <Image
               src={article.main_picture}
               alt="article_picture"
               width={160}
               height={130}
               className={`max-w-[160px] max-h-[130px] w-[160px] h-[130px] grayscale ${!isHovering && "opacity-75"} transition-all duration-300`}
-            />
+              onLoadingComplete={() => setIsSmallLoaded(true)}
+              />
           </div>
 
           <div className="flex flex-col gap-[1rem]">
@@ -122,13 +127,14 @@ const ArticleCard = ({
           </div>
 
           <div className="w-[full] flex justify-center">
-            <div className="bg-red-600">
+            <div className={`${isBigLoaded && "bg-red-600"}`}>
             <Image
               src={article.main_picture}
               alt="article_picture"
               width={460}
               height={300}
               className="max-w-[480px] max-h-[300px] w-[480px] h-[300px] opacity-75 grayscale"
+              onLoadingComplete={() => setIsBigLoaded(true)}
             />
             </div>
           </div>

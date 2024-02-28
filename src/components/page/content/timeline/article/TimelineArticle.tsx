@@ -17,7 +17,8 @@ const TimelineArticle = ({
   return (
     <div
       className="flex flex-row items-center
-              relative left-[1.05rem] z-10"
+              relative left-[1.05rem] z-10
+              w-full"
     >
       <Image
         src="images/article_line.svg"
