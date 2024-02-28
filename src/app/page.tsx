@@ -13,7 +13,7 @@ export default function Home() {
       <div className="w-[90%] grid grid-cols-6 grid-rows-1 mt-[14rem]">
         <div
           className="flex flex-col gap-[3rem]
-             row-start-1 col-start-2 col-end-6 mx-[4rem]"
+             row-start-1 col-start-2 col-end-6 mx-[4rem] 2xl:mx-[8rem]"
         >
           <IntroText />
 

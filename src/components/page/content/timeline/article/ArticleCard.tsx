@@ -1,7 +1,8 @@
+import { useState } from "react";
+
 import Image from "next/image";
 
 import { Article } from "@/types/article";
-import { useState } from "react";
 
 const ArticleCard = ({
   article,
@@ -23,6 +24,7 @@ const ArticleCard = ({
       cursor-pointer`}
       onMouseEnter={() => setIsHovering(false)}
       onMouseLeave={() => setIsHovering(true)}
+      onClick={() => setIsHovering(true)}
     >
       {!isOpen && (
         <>
