@@ -1,6 +1,7 @@
 import IntroText from "@/components/page/content/IntroText";
 import Navbar from "@/components/layout/Navbar";
 import Timeline from "@/components/page/content/timeline/Timeline";
+import Minimap from "@/components/page/content/minimap/Minimap";
 
 export default function Home() {
   return (
@@ -20,7 +21,9 @@ export default function Home() {
           <Timeline />
         </div>
 
-        <div className="row-start-1 col-start-6 col-end-6">Minimap section</div>
+        <div className="row-start-1 col-start-6 col-end-6">
+          <Minimap />
+        </div>
       </div>
     </main>
   );
