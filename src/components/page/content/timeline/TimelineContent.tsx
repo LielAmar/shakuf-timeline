@@ -29,22 +29,18 @@ const TimelineContent = ({
   };
 
   return (
-    <div className={`flex flex-row w-full`}>
+    <div className={`flex flex-row w-full`} id={content.date}>
       {/* Timeline Vertical Line */}
       {position === "first" && (
         <div>
           <div
             className={`z-1 mr-[16px] w-[1px] z-0 bg-transparent 
         ${getComponentHeight(false)}`}
-          >
-            ‎
-          </div>
+          ></div>
           <div
             className={`z-1 mr-[16px] w-[1px] z-0 bg-black 
         ${getComponentHeight(false)}`}
-          >
-            ‎
-          </div>
+          ></div>
         </div>
       )}
       {position === "last" && (
@@ -52,24 +48,18 @@ const TimelineContent = ({
           <div
             className={`z-1 mr-[16px] w-[1px] z-0 bg-black 
       ${getComponentHeight(false)}`}
-          >
-            ‎
-          </div>
+          ></div>
           <div
             className={`z-1 mr-[16px] w-[1px] z-0 bg-transparent 
       ${getComponentHeight(false)}`}
-          >
-            ‎
-          </div>
+          ></div>
         </div>
       )}
       {position === null && (
         <div
           className={`z-1 mr-[16px] w-[1px] z-0 bg-black 
               ${getComponentHeight(true)}`}
-        >
-          ‎
-        </div>
+        ></div>
       )}
 
       {/* Event */}
