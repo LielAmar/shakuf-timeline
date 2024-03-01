@@ -1,4 +1,5 @@
 import { Content } from "@/types/content";
+import MinimapContent from "./MinimapContent";
 import Image from "next/image";
 
 const Minimap = ({ content }: { content: Content[] | null }) => {
