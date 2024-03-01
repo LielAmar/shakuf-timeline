@@ -178,8 +178,8 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
                       />
 
                       {selectedMonth == month && (
-                        <div className="h-[0px] w-[100px] relative right-[75px] bottom-[1.5px]">
-                          <p className="text-[10px] text-[#E83C3C] font-sans">
+                        <div className="w-[100px] relative right-[75px] bottom-[1.5px]">
+                          <p className="text-[12px] text-[#E83C3C] font-sans">
                             {c.title.length > 10
                               ? c.title.substring(0, 10) + "..."
                               : c.title}
