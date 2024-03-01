@@ -42,10 +42,9 @@ export default function Home() {
     });
   }, []);
 
-  if(!details || !content) {
-    return <div>loading...</div>
-  } 
-
+  if (!details || !content) {
+    return <div>loading...</div>;
+  }
 
   return (
     <main
@@ -64,8 +63,10 @@ export default function Home() {
           <Timeline content={content} />
         </div>
 
-        <div className="row-start-1 col-start-6 col-end-6">
-          <Minimap content={content} />
+        <div className="flex justify-center row-start-1 col-start-6 col-end-6">
+          <div className="fixed">
+            <Minimap content={content} />
+          </div>
         </div>
       </div>
     </main>

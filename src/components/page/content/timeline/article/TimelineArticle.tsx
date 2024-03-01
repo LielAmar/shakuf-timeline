@@ -14,6 +14,8 @@ const TimelineArticle = ({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) => {
+  const [hasRead, setHasRead] = useState(false);
+
   return (
     <div
       className="flex flex-row items-center
@@ -21,14 +23,20 @@ const TimelineArticle = ({
               w-full"
     >
       <Image
-        src="images/article_line.svg"
+        src={
+          hasRead ? "images/article_line_read.svg" : "images/article_line.svg"
+        }
         alt="article_line"
         width={240}
         height={32}
       />
 
       <div className="w-full" onClick={() => setIsOpen(!isOpen)}>
-        <ArticleCard article={article} isOpen={isOpen} />
+        <ArticleCard
+          article={article}
+          isOpen={isOpen}
+          setHasRead={setHasRead}
+        />
       </div>
     </div>
   );

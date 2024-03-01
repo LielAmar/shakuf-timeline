@@ -16,10 +16,6 @@ const TimelineContent = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  if (position == "last") {
-    console.log("content: ", content);
-  }
-
   const getComponentHeight = (full: boolean) => {
     if (content.type === "event") {
       return full ? "h-[85px]" : "h-[42.5px]";

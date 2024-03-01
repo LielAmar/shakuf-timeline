@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { DetailsScheme } from "@/types/schemes";
 
-const Navbar = ({ details }: { details: DetailsScheme | null}) => {
+const Navbar = ({ details }: { details: DetailsScheme | null }) => {
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
 
   // Handle the fixed navbar on scroll (Remove the margin at the lower part)
@@ -18,8 +18,8 @@ const Navbar = ({ details }: { details: DetailsScheme | null}) => {
     return () => window.removeEventListener("scroll", handleScrollEvent);
   }, []);
 
-  if(!details) {
-    return <></>
+  if (!details) {
+    return <></>;
   }
 
   return (
@@ -41,12 +41,13 @@ const Navbar = ({ details }: { details: DetailsScheme | null}) => {
         className="w-[83%] flex flex-row justify-between p-[10px]
         border-b-[1px] border-t-[1px] border-black"
       >
-        {details.navbar.map((item: any) => {
+        {details.navbar.map((item: any, index: number) => {
           return (
             <p
               className={`text-[20px] font-bold font-serif 
                ${item.includes("{current}") ? "text-[#EE583F]" : "text-black"}
                cursor-pointer`}
+              key={index}
             >
               {item.replace("{current}", details.page_title)}
             </p>

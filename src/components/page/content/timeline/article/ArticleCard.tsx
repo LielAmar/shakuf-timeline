@@ -7,9 +7,11 @@ import { Article } from "@/types/article";
 const ArticleCard = ({
   article,
   isOpen,
+  setHasRead,
 }: {
   article: Article;
   isOpen: boolean;
+  setHasRead: (hasRead: boolean) => void;
 }) => {
   const [isHovering, setIsHovering] = useState(true);
   const [isSmallLoaded, setIsSmallLoaded] = useState(false);
@@ -34,9 +36,11 @@ const ArticleCard = ({
               alt="article_picture"
               width={160}
               height={130}
-              className={`max-w-[160px] max-h-[130px] w-[160px] h-[130px] grayscale ${!isHovering && "opacity-75"} transition-all duration-300`}
-              onLoadingComplete={() => setIsSmallLoaded(true)}
-              />
+              className={`max-w-[160px] max-h-[130px] w-[160px] h-[130px] grayscale ${
+                !isHovering && "opacity-75"
+              } transition-all duration-300`}
+              onLoad={() => setIsSmallLoaded(true)}
+            />
           </div>
 
           <div className="flex flex-col gap-[1rem]">
@@ -117,10 +121,16 @@ const ArticleCard = ({
           <div className="w-[full] flex justify-end">
             <a
               href={article.full_article}
+              target="_blank"
+              rel="noreferrer noopener"
               className="text-[16px] font-bold 
               text-black hover:text-[#EE583F]
               leading-tight font-sans
               transition-all duration-300"
+              onClick={(event) => {
+                event.stopPropagation(); // Stop the article card from being closed
+                setHasRead(true);
+              }}
             >
               לכתבה המלאה
             </a>
@@ -128,14 +138,14 @@ const ArticleCard = ({
 
           <div className="w-[full] flex justify-center">
             <div className={`${isBigLoaded && "bg-red-600"}`}>
-            <Image
-              src={article.main_picture}
-              alt="article_picture"
-              width={460}
-              height={300}
-              className="max-w-[480px] max-h-[300px] w-[480px] h-[300px] opacity-75 grayscale"
-              onLoadingComplete={() => setIsBigLoaded(true)}
-            />
+              <Image
+                src={article.main_picture}
+                alt="article_picture"
+                width={460}
+                height={300}
+                className="max-w-[480px] max-h-[300px] w-[480px] h-[300px] opacity-75 grayscale"
+                onLoad={() => setIsBigLoaded(true)}
+              />
             </div>
           </div>
         </div>
