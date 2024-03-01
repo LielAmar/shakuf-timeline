@@ -83,7 +83,7 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
     number_of_months: number;
   } = analyzeContent(content);
 
-  const minimap_height = 650;
+  const minimap_height = 600;
 
   const month_height = minimap_height / number_of_months;
 
@@ -92,8 +92,8 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
       <Image
         src="images/minimap_start_end.svg"
         alt="minimap_start"
-        width={12}
-        height={12}
+        width={13}
+        height={13}
       />
 
       {Object.keys(content_per_month).map((month: any, index: number) => {
@@ -146,8 +146,8 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
                           : "images/minimap_article.svg"
                       }
                       alt="minimap_article"
-                      width={12}
-                      height={12}
+                      width={13}
+                      height={13}
                       key={index}
                     />
 
@@ -178,7 +178,7 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
                       />
 
                       {selectedMonth == month && (
-                        <div className="w-[100px] relative right-[75px] bottom-[1.5px]">
+                        <div className="h-[0px] w-[100px] relative right-[75px] bottom-[1.5px]">
                           <p className="text-[12px] text-[#E83C3C] font-sans">
                             {c.title.length > 10
                               ? c.title.substring(0, 10) + "..."
@@ -200,8 +200,8 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
       <Image
         src="images/minimap_start_end.svg"
         alt="minimap_end"
-        width={12}
-        height={12}
+        width={13}
+        height={13}
       />
     </div>
   );
