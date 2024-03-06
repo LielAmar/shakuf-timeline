@@ -34,7 +34,7 @@ const ArticleCard = ({
         } gap-[1rem]`}
       >
         <div className={isOpen ? "w-[full] flex justify-center" : ""}>
-          <div className={`${isImageLoaded && "bg-red-600"}`}>
+          <div className={`${!isOpen && isImageLoaded && "bg-red-600"}`}>
             <Image
               src={article.main_picture}
               alt="article_picture"
