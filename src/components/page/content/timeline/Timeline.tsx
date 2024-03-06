@@ -2,9 +2,9 @@ import { Content } from "@/types/content";
 
 import TimelineContent from "./TimelineContent";
 
-const Timeline = ({content}: {content: Content[] | null}) => {
+const Timeline = ({ content }: { content: Content[] | null }) => {
   if (!content) {
-    return <></>
+    return <></>;
   }
 
   return (

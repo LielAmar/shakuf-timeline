@@ -6,7 +6,7 @@ import Image from "next/image";
 const convertDate = (date: string) => {
   const dateObj = new Date(date);
 
-  let day = dateObj.getDate() + 1 + "";
+  let day = dateObj.getDate() + "";
   if (dateObj.getDate() < 9) {
     day = "0" + day;
   }

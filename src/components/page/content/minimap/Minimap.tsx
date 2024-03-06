@@ -79,141 +79,130 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
     return <></>;
   }
 
-  const [selectedMonth, setSelectedMonth] = useState<string>("");
+  // offset
+  // Two conseq articles = 9px
+  const offset = 5;
+  const per_day_multiplier = 6.25;
+  const event_height = 10;
+  const article_height = 13;
 
-  const {
-    content_per_month,
-    number_of_months,
-  }: {
-    content_per_month: { [date: string]: Content[] };
-    number_of_months: number;
-  } = analyzeContent(content);
+  let current_offset = 0;
 
-  const minimap_height = 600;
-
-  const month_height = minimap_height / number_of_months;
+  content = [content[0], ...content, content[content.length - 1]];
 
   return (
-    <div className="w-[100%] flex flex-col items-center">
-      {/* <div className="flex flex-row-reverse left-[50px]"> */}
-      <Image
-        src="images/minimap_start_end.svg"
-        alt="minimap_start"
-        width={13}
-        height={13}
-      />
-      {/* <p className="text-[20px] text-black font-sans">
-          {new Date(content[0].date).getFullYear()}
-        </p> */}
-      {/* </div> */}
-
-      {Object.keys(content_per_month).map((month: any, index: number) => {
-        const month_content = content_per_month[month];
-
-        if (month_content.length == 0) {
-          return seperator(month_height, selectedMonth, month, index);
+    <div className={`w-full h-full flex flex-col items-center`}>
+      {content.map((c, index) => {
+        if (index === 0) {
+          return (
+            <div style={{ top: 0 }} className={`absolute h-[13px] w-[13px]`}>
+              <Image
+                key={index}
+                src="/images/minimap_start_end.svg"
+                alt="minimap_start"
+                width={13}
+                height={13}
+              />
+            </div>
+          );
         }
 
-        const events_height =
-          month_content.filter((c) => c.type === "event").length * 20;
+        if (index === content.length - 1) {
+          current_offset += 12;
 
-        const height_left = month_height - events_height;
-        const number_of_articles = month_content.filter(
-          (c) => c.type === "article"
-        ).length;
-        const items_height = number_of_articles * 12;
-        const distance_between_articles =
-          (height_left - items_height) / number_of_articles;
+          return (
+            <div
+              style={{ top: current_offset + offset }}
+              className={`absolute h-[13px] w-[13px]`}
+            >
+              <Image
+                key={index}
+                src="/images/minimap_start_end.svg"
+                alt="minimap_start"
+                width={13}
+                height={13}
+              />
+            </div>
+          );
+        }
 
-        // const number_of_items = month_content.length;
-        // const item_height =
-        // (month_height - distance_between_items * number_of_items) /
-        // number_of_items;
-        console.log("month_height", month_height);
-        console.log("items_height", items_height);
-        console.log("month_content", month_content.length);
-        const distance_between_items =
-          (month_height - items_height) / month_content.length;
-        console.log("distance_between_items", distance_between_items);
+        if (c.type === "article") {
+          let old_offset = current_offset;
 
-        return (
-          <a
-            key={index}
-            className="w-full flex flex-col items-center cursor-pointer"
-            onMouseEnter={() => setSelectedMonth(month)}
-            onMouseLeave={() => {
-              if (selectedMonth == month) setSelectedMonth("");
-            }}
-            href={"#" + month_content[0].date}
-          >
-            {month_content.map((c, index) => {
-              if (c.type === "article") {
-                return (
-                  <>
-                    <Image
-                      src={
-                        selectedMonth == month
-                          ? "images/minimap_article_active.svg"
-                          : "images/minimap_article.svg"
-                      }
-                      alt="minimap_article"
-                      width={13}
-                      height={13}
-                      key={index}
-                    />
+          let diff = 0;
 
-                    {seperator(distance_between_items, selectedMonth, month)}
-                  </>
-                );
-              }
+          const prev_c = content[index - 1];
 
-              if (c.type === "event") {
-                return (
-                  <>
-                    <div className="flex flex-row">
-                      <Image
-                        src={
-                          selectedMonth == month
-                            ? "images/minimap_event_line_active.svg"
-                            : "images/minimap_event_line.svg"
-                        }
-                        alt="minimap_event"
-                        width={19}
-                        height={8}
-                        key={index}
-                        className={`relative ${
-                          selectedMonth !== month
-                            ? "right-[8.5px]"
-                            : "right-[58.5px]"
-                        }`}
-                      />
+          const prev_date = new Date(prev_c.date);
+          const date = new Date(c.date);
 
-                      {selectedMonth == month && (
-                        <div className="h-[0px] w-[100px] relative right-[75px] bottom-[4px]">
-                          <p className="text-[12px] text-[#E83C3C] font-sans">
-                            {c.title.length > 10
-                              ? c.title.substring(0, 10) + "..."
-                              : c.title}
-                          </p>
-                        </div>
-                      )}
-                    </div>
+          const diff_in_days = Math.round(
+            (date.getTime() - prev_date.getTime()) / (1000 * 3600 * 24)
+          );
 
-                    {seperator(distance_between_items, selectedMonth, month)}
-                  </>
-                );
-              }
-            })}
-          </a>
-        );
+          diff = Math.round(Math.log(diff_in_days + 1));
+
+          current_offset += diff * per_day_multiplier;
+          current_offset += prev_c.type === "event" ? event_height : 0;
+
+          return (
+            <>
+              {/* <div
+                style={{ top: old_offset, height: current_offset - old_offset }}
+                className={`absolute w-[1px] bg-black`}
+              >
+                ‎
+              </div> */}
+              <div
+                style={{ top: current_offset + offset }}
+                className={`absolute h-[13px] w-[13px]`}
+              >
+                <Image
+                  key={index}
+                  src="/images/minimap_article.svg"
+                  alt="article"
+                  width={13}
+                  height={article_height}
+                />
+              </div>
+            </>
+          );
+        }
+
+        if (c.type === "event") {
+          let diff = 0;
+
+          const prev_c = content[index - 1];
+
+          const prev_date = new Date(prev_c.date);
+          const date = new Date(c.date);
+
+          const diff_in_days = Math.round(
+            (date.getTime() - prev_date.getTime()) / (1000 * 3600 * 24)
+          );
+
+          diff = Math.round(Math.log(diff_in_days + 1));
+
+          current_offset += diff * per_day_multiplier;
+          current_offset += prev_c.type === "event" ? event_height : 0;
+          current_offset += prev_c.type === "article" ? article_height : 0;
+
+          return (
+            <div
+              style={{ top: current_offset + offset }}
+              className={`absolute h-[10px] w-[19px] left-[-18px]`}
+            >
+              <Image
+                key={index}
+                src="/images/minimap_event_line.svg"
+                alt="event"
+                width={19}
+                height={event_height}
+              />
+            </div>
+          );
+        }
       })}
-
-      <Image
-        src="images/minimap_start_end.svg"
-        alt="minimap_end"
-        width={13}
-        height={13}
-      />
     </div>
   );
 };

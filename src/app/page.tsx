@@ -63,9 +63,9 @@ export default function Home() {
     <main className="flex flex-col min-h-screen justify-between">
       <Navbar details={details} />
 
-      <div className="w-[90%] grid grid-cols-6 grid-rows-1 mt-[14rem]">
+      <div className="w-[90%] grid grid-cols-6 grid-rows-1 mt-[12.5rem]">
         <div
-          className="flex flex-col gap-[3rem]
+          className="flex flex-col gap-[1rem]
              row-start-1 col-start-2 col-end-6 mx-[4rem] 2xl:mx-[8rem]"
         >
           <IntroText details={details} />
@@ -74,7 +74,7 @@ export default function Home() {
         </div>
 
         <div className="flex justify-center row-start-1 col-start-6 col-end-6">
-          <div className="fixed">
+          <div className="fixed h-full">
             <Minimap content={content} />
           </div>
         </div>
