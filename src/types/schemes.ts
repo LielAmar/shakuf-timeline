@@ -13,10 +13,6 @@ export type DetailsScheme = {
     rest_text: string;
   }
 
-  footer: {
-    text: string;
-  }
-
   navbar: string[];
 }
 
@@ -24,8 +20,4 @@ export type ContentScheme = {
   events: Event[],
 
   articles: Article[]
-}
-
-export type StatisticsScheme = {
-
 }
