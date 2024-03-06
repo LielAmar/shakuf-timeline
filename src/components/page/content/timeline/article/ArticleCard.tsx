@@ -16,108 +16,46 @@ const ArticleCard = ({
   const [isHovering, setIsHovering] = useState(true);
   const [isSmallLoaded, setIsSmallLoaded] = useState(false);
   const [isBigLoaded, setIsBigLoaded] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
     <div
-      className={`flex flex-row gap-[1rem]
+      className={`
       border-[1px] rounded ${isHovering ? "border-black" : "border-[#EE583F]"}
       h-full w-full p-[1rem]
-      transition-all duration-300
       cursor-pointer`}
       onMouseEnter={() => setIsHovering(false)}
       onMouseLeave={() => setIsHovering(true)}
       onClick={() => setIsHovering(true)}
     >
-      {!isOpen && (
-        <>
-          <div className={`${isSmallLoaded && "bg-red-600"}`}>
+      <div
+        className={`flex ${
+          isOpen ? "flex-col-reverse" : "flex-row"
+        } gap-[1rem]`}
+      >
+        <div className={isOpen ? "w-[full] flex justify-center" : ""}>
+          <div className={`${isImageLoaded && "bg-red-600"}`}>
             <Image
               src={article.main_picture}
               alt="article_picture"
-              width={160}
-              height={130}
-              className={`max-w-[160px] max-h-[130px] w-[160px] h-[130px] grayscale ${
-                !isHovering && "opacity-75"
-              } transition-all duration-300`}
-              onLoad={() => setIsSmallLoaded(true)}
+              width={isOpen ? 460 : 160}
+              height={isOpen ? 300 : 130}
+              className={`
+                ${!isOpen && !isHovering ? "opacity-75" : "opacity-100"}
+
+                ${
+                  isOpen
+                    ? "max-w-[480px] max-h-[300px] w-[480px] h-[300px]"
+                    : "max-w-[160px] max-h-[130px] w-[160px] h-[130px]"
+                }
+                grayscale
+                transition-all duration-[500ms]`}
+              onLoad={() => setIsImageLoaded(true)}
             />
           </div>
+        </div>
 
-          <div className="flex flex-col gap-[1rem]">
-            <p
-              className="text-[20px] font-normal 
-              text-[#EE583F] 
-              leading-tight font-sans
-              transition-all duration-300"
-            >
-              {new Date(article.date).toLocaleDateString("en-GB")}
-            </p>
-
-            <p
-              className={`text-[20px] font-medium 
-              ${isHovering ? "text-black" : "text-[#EE583F]"} 
-              leading-tight font-sans
-              transition-all duration-300`}
-            >
-              {article.title}
-            </p>
-          </div>
-        </>
-      )}
-
-      {isOpen && (
-        <div className="flex flex-col gap-[1.5rem]">
-          <div className="flex flex-row gap-[1rem]">
-            <p
-              className="text-[16px] font-normal 
-              text-black 
-              leading-tight font-sans
-              transition-all duration-300"
-            >
-              {new Date(article.date).toLocaleDateString("en-GB")}
-            </p>
-
-            <p
-              className="text-[16px] font-normal 
-              text-black 
-              leading-tight font-sans
-              transition-all duration-300"
-            >
-              |
-            </p>
-
-            <p
-              className="text-[16px] font-normal 
-              text-black 
-              leading-tight font-sans
-              transition-all duration-300"
-            >
-              {article.author}
-            </p>
-          </div>
-
-          <div>
-            <p
-              className="text-[20px] font-bold 
-              text-[#EE583F] 
-              leading-tight font-sans
-              transition-all duration-300"
-            >
-              {article.title}
-            </p>
-          </div>
-
-          <div>
-            <p
-              className="text-[18px] font-normal 
-              text-black 
-              leading-tight font-sans
-              transition-all duration-300"
-            >
-              {article.content}
-            </p>
-          </div>
-
+        {isOpen && (
           <div className="w-[full] flex justify-end">
             <a
               href={article.full_article}
@@ -125,8 +63,7 @@ const ArticleCard = ({
               rel="noreferrer noopener"
               className="text-[16px] font-bold 
               text-black hover:text-[#EE583F]
-              leading-tight font-sans
-              transition-all duration-300"
+              leading-tight font-sans"
               onClick={(event) => {
                 event.stopPropagation(); // Stop the article card from being closed
                 setHasRead(true);
@@ -135,21 +72,64 @@ const ArticleCard = ({
               לכתבה המלאה
             </a>
           </div>
+        )}
 
-          <div className="w-[full] flex justify-center">
-            <div className={`${isBigLoaded && "bg-red-600"}`}>
-              <Image
-                src={article.main_picture}
-                alt="article_picture"
-                width={460}
-                height={300}
-                className="max-w-[480px] max-h-[300px] w-[480px] h-[300px] opacity-75 grayscale"
-                onLoad={() => setIsBigLoaded(true)}
-              />
-            </div>
+        <div className="flex flex-col gap-[1rem]">
+          {/* Date & Author */}
+          <div className="flex flex-row gap-[1rem]">
+            <p
+              className={`
+              ${isOpen ? "text-[16px]" : "text-[20px]"}
+              ${isOpen ? "text-black" : "text-[#EE583F]"} 
+              font-normal 
+              leading-tight font-sans`}
+            >
+              {new Date(article.date).toLocaleDateString("en-GB")}
+            </p>
+
+            {isOpen && (
+              <>
+                <p
+                  className="text-[16px] font-normal 
+              text-black 
+              leading-tight font-sans"
+                >
+                  |
+                </p>
+
+                <p
+                  className="text-[16px] font-normal 
+              text-black 
+              leading-tight font-sans"
+                >
+                  {article.author}
+                </p>
+              </>
+            )}
           </div>
+
+          {/* Title */}
+          <p
+            className={`text-[20px] 
+              ${isOpen ? "font-bold" : "font-medium"} 
+              ${!isOpen && isHovering ? "text-black" : "text-[#EE583F]"} 
+              leading-tight font-sans`}
+          >
+            {article.title}
+          </p>
+
+          {/* Content */}
+          {isOpen && (
+            <p
+              className="text-[18px] font-normal 
+              text-black 
+              leading-tight font-sans"
+            >
+              {article.content}
+            </p>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
