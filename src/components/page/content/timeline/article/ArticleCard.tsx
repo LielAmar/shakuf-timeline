@@ -14,8 +14,6 @@ const ArticleCard = ({
   setHasRead: (hasRead: boolean) => void;
 }) => {
   const [isHovering, setIsHovering] = useState(true);
-  const [isSmallLoaded, setIsSmallLoaded] = useState(false);
-  const [isBigLoaded, setIsBigLoaded] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
@@ -34,7 +32,7 @@ const ArticleCard = ({
         } gap-[1rem]`}
       >
         <div className={isOpen ? "w-[full] flex justify-center" : ""}>
-          <div className={`${!isOpen && isImageLoaded && "bg-red-600"}`}>
+          <div className={`${!isOpen && isImageLoaded && "bg-red-600 transition-all duration-[500ms]"}`}>
             <Image
               src={article.main_picture}
               alt="article_picture"
