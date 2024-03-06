@@ -57,11 +57,17 @@ const analyzeContent = (content: Content[]) => {
   return { content_per_month, number_of_months };
 };
 
-const seperator = (height: number, selectedMonth: string, month: string) => {
+const seperator = (
+  height: number,
+  selectedMonth: string,
+  month: string,
+  index: number | null = null
+) => {
   const color = selectedMonth == month ? "#EE583F" : "#000000";
 
   return (
     <div
+      key={index}
       style={{ height: `${height}px`, backgroundColor: color }}
       className={`w-[1px]`}
     ></div>
@@ -100,7 +106,7 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
         const month_content = content_per_month[month];
 
         if (month_content.length == 0) {
-          return seperator(month_height, selectedMonth, month);
+          return seperator(month_height, selectedMonth, month, index);
         }
 
         const events_height =

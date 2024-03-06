@@ -16,6 +16,8 @@
 
 :root {
   scroll-behavior: smooth;
+  overscroll-behavior: auto;
+  background-color: #FAF6F1;
 }
 
 @media (prefers-color-scheme: dark) {

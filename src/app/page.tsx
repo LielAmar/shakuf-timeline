@@ -10,6 +10,7 @@ import { db } from "@/config/firebase";
 import { Article } from "@/types/article";
 import { Content } from "@/types/content";
 import Minimap from "@/components/page/content/minimap/Minimap";
+import Image from "next/image";
 
 export default function Home() {
   const [details, setDetails] = useState<DetailsScheme | null>(null);
@@ -43,14 +44,21 @@ export default function Home() {
   }, []);
 
   if (!details || !content) {
-    return <div>loading...</div>;
+    return (
+      <main className="h-screen w-screen flex justify-center items-center">
+        <Image
+          className="h-[500px] w-[500px]"
+          src="/images/loading.gif"
+          alt="loading"
+          width={500}
+          height={500}
+        />
+      </main>
+    );
   }
 
   return (
-    <main
-      className="flex flex-col min-h-screen justify-between overscroll-auto
-          bg-[#FAF6F1]"
-    >
+    <main className="flex flex-col min-h-screen justify-between">
       <Navbar details={details} />
 
       <div className="w-[90%] grid grid-cols-6 grid-rows-1 mt-[14rem]">
