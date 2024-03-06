@@ -69,23 +69,23 @@ const TimelineEvent = ({ event }: { event: Event }) => {
         height={32}
       />
 
-      <div className="w-[9rem] mr-[2.5rem]">
-        <p className="text-[25px] font-bold text-[#EE583F] leading-tight font-serif">
+      <div className="w-[8.5rem] mr-[2.5rem]">
+        <p className="text-[25px] font-regular text-[#EE583F] leading-tight font-serif">
           {isLast ? event.title : convertDate(event.date)}
         </p>
       </div>
 
       {!isLast && (
         <Image
-          src="images/event_line.svg"
-          alt="event_line"
-          width={147}
+          src="images/event_rectengle.svg"
+          alt="event_rectengle"
+          width={16}
           height={16}
         />
       )}
 
       {!isLast && (
-        <div className="w-[25rem] mr-[2.5rem]">
+        <div className="w-[24rem] mr-[1rem]">
           <p className="text-[25px] font-bold text-[#EE583F] leading-tight font-serif">
             {event.title}
           </p>

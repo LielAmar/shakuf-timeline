@@ -95,12 +95,17 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
 
   return (
     <div className="w-[100%] flex flex-col items-center">
+      {/* <div className="flex flex-row-reverse left-[50px]"> */}
       <Image
         src="images/minimap_start_end.svg"
         alt="minimap_start"
         width={13}
         height={13}
       />
+      {/* <p className="text-[20px] text-black font-sans">
+          {new Date(content[0].date).getFullYear()}
+        </p> */}
+      {/* </div> */}
 
       {Object.keys(content_per_month).map((month: any, index: number) => {
         const month_content = content_per_month[month];
@@ -184,7 +189,7 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
                       />
 
                       {selectedMonth == month && (
-                        <div className="h-[0px] w-[100px] relative right-[75px] bottom-[1.5px]">
+                        <div className="h-[0px] w-[100px] relative right-[75px] bottom-[4px]">
                           <p className="text-[12px] text-[#E83C3C] font-sans">
                             {c.title.length > 10
                               ? c.title.substring(0, 10) + "..."
