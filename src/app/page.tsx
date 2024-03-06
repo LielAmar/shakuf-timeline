@@ -1,17 +1,17 @@
 "use client";
 
+import Image from "next/image";
+import { useEffect, useState } from "react";
+
 import IntroText from "@/components/page/content/IntroText";
 import Navbar from "@/components/layout/Navbar";
 import Timeline from "@/components/page/content/timeline/Timeline";
-import { useEffect, useState } from "react";
 import { DetailsScheme } from "@/types/schemes";
-import { doc, onSnapshot, setDoc } from "firebase/firestore";
+import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/config/firebase";
 import { Article } from "@/types/article";
 import { Content } from "@/types/content";
 import Minimap from "@/components/page/content/minimap/Minimap";
-import Image from "next/image";
-import { gaza_war_content_scheme, gaza_war_details_scheme, mahapeha_content_scheme, mahapeha_details_scheme } from "@/config/db_schemes";
 
 export default function Home() {
   const [details, setDetails] = useState<DetailsScheme | null>(null);
@@ -19,8 +19,8 @@ export default function Home() {
 
   // Retrieve the details document from the database
   useEffect(() => {
-    const details_document = doc(db, "gaza_war", "details");
-    const content_document = doc(db, "gaza_war", "content");
+    const details_document = doc(db, "mahapeha", "details");
+    const content_document = doc(db, "mahapeha", "content");
 
     onSnapshot(details_document, (doc: any) => {
       setDetails(doc.data());

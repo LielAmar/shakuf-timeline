@@ -1,19 +1,28 @@
 import { DetailsScheme } from "@/types/schemes";
 
-const IntroText = ({details}: {details: DetailsScheme | null}) => {
+const IntroText = ({ details }: { details: DetailsScheme | null }) => {
   if (!details) {
-    return <></>
+    return <></>;
   }
 
   return (
-    <p>
-      <span className="text-[28px] font-bold text-[#EE583F] leading-tight font-serif">
+    <div className="flex flex-col gap-[1rem]">
+      <p className="text-[28px] font-bold text-[#EE583F] leading-tight font-serif">
         {details.header.start_text}
-      </span>
-      <span className="text-[24px] font-normal text-black leading-tight font-sans">
+      </p>
+      <p className="text-[24px] font-normal text-black leading-tight font-sans">
         {details.header.rest_text}
-      </span>
-    </p>
+      </p>
+    </div>
+
+    // <p>
+    //   <span className="text-[28px] font-bold text-[#EE583F] leading-tight font-serif">
+    //     {details.header.start_text}
+    //   </span>
+    //   <span className="text-[24px] font-normal text-black leading-tight font-sans">
+    //     {details.header.rest_text}
+    //   </span>
+    // </p>
   );
 };
 

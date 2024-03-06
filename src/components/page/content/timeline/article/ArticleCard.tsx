@@ -21,33 +21,36 @@ const ArticleCard = ({
       className={`
       border-[1px] rounded ${isHovering ? "border-black" : "border-[#EE583F]"}
       h-full w-full p-[1rem]
-      cursor-pointer`}
+      cursor-pointer
+      transition-all duration-300 ease-in-out`}
       onMouseEnter={() => setIsHovering(false)}
       onMouseLeave={() => setIsHovering(true)}
       onClick={() => setIsHovering(true)}
     >
       <div
-        className={`flex ${
-          isOpen ? "flex-col-reverse" : "flex-row"
-        } gap-[1rem]`}
+        className={`flex 
+        ${isOpen ? "flex-col-reverse" : "flex-row"} 
+        gap-[1rem]
+        transition-all duration-1000 ease-in-out`}
       >
         <div className={isOpen ? "w-[full] flex justify-center" : ""}>
-          <div className={`${!isOpen && isImageLoaded && "bg-red-600 transition-all duration-[500ms]"}`}>
+          <div
+            className={`
+            ${!isOpen && isImageLoaded && "bg-red-600"}
+            ${isOpen ? "w-[460px] h-[300px]" : "w-[160px] h-[130px]"}
+            transition-all duration-300 ease-in-out`}
+          >
             <Image
               src={article.main_picture}
               alt="article_picture"
-              width={isOpen ? 460 : 160}
-              height={isOpen ? 300 : 130}
+              width={1000}
+              height={1000}
               className={`
-                ${!isOpen && !isHovering ? "opacity-75" : "opacity-100"}
-
-                ${
-                  isOpen
-                    ? "max-w-[480px] max-h-[300px] w-[480px] h-[300px]"
-                    : "max-w-[160px] max-h-[130px] w-[160px] h-[130px]"
-                }
+                object-cover
+                ${isOpen ? "w-[460px] h-[300px]" : "w-[160px] h-[130px]"}
+                ${!isOpen && !isHovering && "opacity-75"}
                 grayscale
-                transition-all duration-[500ms]`}
+                transition-all duration-300 ease-in-out`}
               onLoad={() => setIsImageLoaded(true)}
             />
           </div>
@@ -89,16 +92,16 @@ const ArticleCard = ({
               <>
                 <p
                   className="text-[16px] font-normal 
-              text-black 
-              leading-tight font-sans"
+                  text-black 
+                  leading-tight font-sans"
                 >
                   |
                 </p>
 
                 <p
                   className="text-[16px] font-normal 
-              text-black 
-              leading-tight font-sans"
+                  text-black 
+                  leading-tight font-sans"
                 >
                   {article.author}
                 </p>
