@@ -174,17 +174,17 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
                       <Image
                         src={
                           selectedMonth == month
-                            ? "images/minimap_event_active.svg"
-                            : "images/minimap_event.svg"
+                            ? "images/minimap_event_line_active.svg"
+                            : "images/minimap_event_line.svg"
                         }
                         alt="minimap_event"
-                        width={40}
-                        height={20}
+                        width={19}
+                        height={8}
                         key={index}
                         className={`relative ${
                           selectedMonth !== month
-                            ? "right-[19px]"
-                            : "right-[69px]"
+                            ? "right-[8.5px]"
+                            : "right-[58.5px]"
                         }`}
                       />
 
