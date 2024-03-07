@@ -57,20 +57,14 @@ const analyzeContent = (content: Content[]) => {
   return { content_per_month, number_of_months };
 };
 
-const seperator = (
-  height: number,
-  selectedMonth: string,
-  month: string,
-  index: number | null = null
-) => {
-  const color = selectedMonth == month ? "#EE583F" : "#000000";
-
+const Separator = ({ height, offset }: { height: number; offset: number }) => {
   return (
     <div
-      key={index}
-      style={{ height: `${height}px`, backgroundColor: color }}
-      className={`w-[1px]`}
-    ></div>
+      style={{ height: `${height}px`, top: `${offset}px` }}
+      className={`absolute w-[1px] bg-black`}
+    >
+      ‎
+    </div>
   );
 };
 
@@ -79,11 +73,11 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
     return <></>;
   }
 
-  // offset
-  // Two conseq articles = 9px
+  const [selectedItem, setSelectedItem] = useState("");
+
   const offset = 5;
-  const per_day_multiplier = 6.25;
-  const event_height = 10;
+  const per_day_multiplier = 8;
+  const event_height = 12;
   const article_height = 13;
 
   let current_offset = 0;
@@ -95,15 +89,20 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
       {content.map((c, index) => {
         if (index === 0) {
           return (
-            <div style={{ top: 0 }} className={`absolute h-[13px] w-[13px]`}>
-              <Image
-                key={index}
-                src="/images/minimap_start_end.svg"
-                alt="minimap_start"
-                width={13}
-                height={13}
-              />
-            </div>
+            <>
+              <div style={{ top: 0 }} className={`absolute h-[13px] w-[13px]`}>
+                <Image
+                  src="/images/minimap_start_end.svg"
+                  alt="minimap_start"
+                  width={13}
+                  height={13}
+                  onMouseEnter={() => setSelectedItem(index + "")}
+                  onMouseLeave={() => setSelectedItem("")}
+                />
+              </div>
+
+              <Separator height={offset} offset={13} />
+            </>
           );
         }
 
@@ -111,97 +110,112 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
           current_offset += 12;
 
           return (
-            <div
-              style={{ top: current_offset + offset }}
-              className={`absolute h-[13px] w-[13px]`}
-            >
-              <Image
-                key={index}
-                src="/images/minimap_start_end.svg"
-                alt="minimap_start"
-                width={13}
-                height={13}
-              />
-            </div>
-          );
-        }
-
-        if (c.type === "article") {
-          let old_offset = current_offset;
-
-          let diff = 0;
-
-          const prev_c = content[index - 1];
-
-          const prev_date = new Date(prev_c.date);
-          const date = new Date(c.date);
-
-          const diff_in_days = Math.round(
-            (date.getTime() - prev_date.getTime()) / (1000 * 3600 * 24)
-          );
-
-          diff = Math.round(Math.log(diff_in_days + 1));
-
-          current_offset += diff * per_day_multiplier;
-          current_offset += prev_c.type === "event" ? event_height : 0;
-
-          return (
             <>
-              {/* <div
-                style={{ top: old_offset, height: current_offset - old_offset }}
-                className={`absolute w-[1px] bg-black`}
-              >
-                ‎
-              </div> */}
+              <Separator height={offset} offset={current_offset} key={index} />
+
               <div
                 style={{ top: current_offset + offset }}
                 className={`absolute h-[13px] w-[13px]`}
               >
                 <Image
-                  key={index}
-                  src="/images/minimap_article.svg"
-                  alt="article"
+                  src="/images/minimap_start_end.svg"
+                  alt="minimap_start"
                   width={13}
-                  height={article_height}
+                  height={13}
+                  onMouseEnter={() => setSelectedItem(index + "")}
+                  onMouseLeave={() => setSelectedItem("")}
                 />
               </div>
             </>
           );
         }
 
-        if (c.type === "event") {
-          let diff = 0;
+        let old_offset = current_offset;
 
-          const prev_c = content[index - 1];
+        let diff = 0;
 
-          const prev_date = new Date(prev_c.date);
-          const date = new Date(c.date);
+        const prev_c = content[index - 1];
 
-          const diff_in_days = Math.round(
-            (date.getTime() - prev_date.getTime()) / (1000 * 3600 * 24)
-          );
+        const prev_date = new Date(prev_c.date);
+        const date = new Date(c.date);
 
-          diff = Math.round(Math.log(diff_in_days + 1));
+        const diff_in_days = Math.round(
+          (date.getTime() - prev_date.getTime()) / (1000 * 3600 * 24)
+        );
 
-          current_offset += diff * per_day_multiplier;
-          current_offset += prev_c.type === "event" ? event_height : 0;
-          current_offset += prev_c.type === "article" ? article_height : 0;
+        diff = Math.round(Math.log(diff_in_days + 1));
 
-          return (
-            <div
-              style={{ top: current_offset + offset }}
-              className={`absolute h-[10px] w-[19px] left-[-18px]`}
-            >
-              <Image
-                key={index}
-                src="/images/minimap_event_line.svg"
-                alt="event"
-                width={19}
-                height={event_height}
-              />
-            </div>
-          );
-        }
+        current_offset += diff * per_day_multiplier;
+        current_offset += prev_c.type === "event" ? event_height : 0;
+        current_offset +=
+          prev_c.type === "article" && c.type === "event" ? article_height : 0;
+
+        const line_start =
+          old_offset +
+          (prev_c.type === "event" ? event_height - 1 : article_height - 1) +
+          offset;
+
+        const line_end = current_offset + 1 + offset;
+
+        return (
+          <>
+            <Separator
+              height={Math.max(line_end - line_start, 0)}
+              offset={line_start}
+            />
+
+            {c.type === "article" && (
+              <div
+                style={{ top: current_offset + offset }}
+                className={`absolute h-[13px] w-[13px] cursor-pointer`}
+              >
+                <Image
+                  src={
+                    selectedItem === index + ""
+                      ? "/images/minimap_article_active.svg"
+                      : "/images/minimap_article.svg"
+                  }
+                  alt="article"
+                  width={13}
+                  height={article_height}
+                  onMouseEnter={() => setSelectedItem(index + "")}
+                  onMouseLeave={() => setSelectedItem("")}
+                />
+              </div>
+            )}
+
+            {c.type === "event" && (
+              <div
+                style={{ top: current_offset + offset }}
+                className={`absolute h-[12px] w-[23px] left-[-22.5px] cursor-pointer`}
+              >
+                <Image
+                  src={
+                    selectedItem === index + ""
+                      ? "/images/minimap_event_line_active.svg"
+                      : "/images/minimap_event_line.svg"
+                  }
+                  alt="event"
+                  width={23}
+                  height={event_height}
+                  onMouseEnter={() => setSelectedItem(index + "")}
+                  onMouseLeave={() => setSelectedItem("")}
+                />
+
+                {selectedItem === index + "" && (
+                  <p
+                    className="absolute w-[20rem] text-[#EE583F]
+                    text-[13px] top-[-3px] right-[28px] font-sans"
+                  >
+                    {c.title.length > 20
+                      ? c.title.substring(0, 20) + "..."
+                      : c.title}
+                  </p>
+                )}
+              </div>
+            )}
+          </>
+        );
       })}
     </div>
   );
