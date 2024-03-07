@@ -90,7 +90,16 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
         if (index === 0) {
           return (
             <>
-              <div style={{ top: 0 }} className={`absolute h-[13px] w-[13px]`}>
+              <div
+                style={{ top: 0 }}
+                className={`flex flex-row absolute items-center
+                  h-[13px] w-[13px] 
+                  left-[38.5px]`}
+              >
+                <p className="text-[15px] font-sans ml-[1rem]">
+                  {new Date(c.date).getFullYear()}
+                </p>
+
                 <Image
                   src="/images/minimap_start_end.svg"
                   alt="minimap_start"
@@ -115,8 +124,13 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
 
               <div
                 style={{ top: current_offset + offset }}
-                className={`absolute h-[13px] w-[13px]`}
+                className={`flex flex-row absolute items-center
+                  h-[13px] w-[13px] 
+                  left-[38.5px]`}
               >
+                <p className="text-[15px] font-sans ml-[1rem]">
+                  {new Date(c.date).getFullYear()}
+                </p>
                 <Image
                   src="/images/minimap_start_end.svg"
                   alt="minimap_start"
@@ -165,7 +179,8 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
             />
 
             {c.type === "article" && (
-              <div
+              <a
+                href={`#${c.date}`}
                 style={{ top: current_offset + offset }}
                 className={`absolute h-[13px] w-[13px] cursor-pointer`}
               >
@@ -181,11 +196,12 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
                   onMouseEnter={() => setSelectedItem(index + "")}
                   onMouseLeave={() => setSelectedItem("")}
                 />
-              </div>
+              </a>
             )}
 
             {c.type === "event" && (
-              <div
+              <a
+                href={`#${c.date}`}
                 style={{ top: current_offset + offset }}
                 className={`absolute h-[12px] w-[23px] left-[-22.5px] cursor-pointer`}
               >
@@ -212,7 +228,7 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
                       : c.title}
                   </p>
                 )}
-              </div>
+              </a>
             )}
           </>
         );
