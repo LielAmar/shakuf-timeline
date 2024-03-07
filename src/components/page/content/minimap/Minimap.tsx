@@ -61,7 +61,7 @@ const Separator = ({ height, offset }: { height: number; offset: number }) => {
   return (
     <div
       style={{ height: `${height}px`, top: `${offset}px` }}
-      className={`absolute w-[1px] bg-black`}
+      className={`absolute w-[1.2px] bg-black`}
     >
       ‎
     </div>

@@ -24,27 +24,27 @@ const Navbar = ({ details }: { details: DetailsScheme | null }) => {
 
   return (
     <div
-      className={`w-[100%] flex flex-col items-center gap-[30px]
-      ${hasScrolled ? "pt-[10px]" : "pt-[30px]"}
+      className={`w-[100%] flex flex-col items-center gap-[15px]
+      ${hasScrolled ? "pt-[10px]" : "pt-[15px]"}
       fixed top-0 right-0 transition-all duration-300
       bg-gradient-to-b from-[#FAF6F1] from-85% via-[#FAF6F1] to-transparent z-50`}
     >
       <Image
         className=""
-        src={details.logo_url}
+        src="/images/logo.png"
         alt="logo"
         width={100}
         height={36}
       />
 
       <div
-        className="w-[83%] flex flex-row justify-between p-[10px]
+        className="w-[67%] flex flex-row justify-between py-[7px]
         border-b-[1px] border-t-[1px] border-black"
       >
         {details.navbar.map((item: any, index: number) => {
           return (
             <p
-              className={`text-[20px] font-bold font-serif 
+              className={`text-[18px] font-bold font-sans 
                ${item.includes("{current}") ? "text-[#EE583F]" : "text-black"}
                cursor-pointer`}
               key={index}

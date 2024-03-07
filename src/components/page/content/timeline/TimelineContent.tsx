@@ -34,11 +34,11 @@ const TimelineContent = ({
       {position === "first" && (
         <div>
           <div
-            className={`z-1 mr-[16px] w-[1px] z-0 bg-transparent 
+            className={`z-1 mr-[16px] w-[1.2px] z-0 bg-transparent 
         ${getComponentHeight(false)}`}
           ></div>
           <div
-            className={`z-1 mr-[16px] w-[1px] z-0 bg-black 
+            className={`z-1 mr-[16px] w-[1.2px] z-0 bg-black 
         ${getComponentHeight(false)}`}
           ></div>
         </div>
@@ -46,18 +46,18 @@ const TimelineContent = ({
       {position === "last" && (
         <div>
           <div
-            className={`z-1 mr-[16px] w-[1px] z-0 bg-black 
+            className={`z-1 mr-[16px] w-[1.2px] z-0 bg-black 
       ${getComponentHeight(false)}`}
           ></div>
           <div
-            className={`z-1 mr-[16px] w-[1px] z-0 bg-transparent 
+            className={`z-1 mr-[16px] w-[1.2px] z-0 bg-transparent 
       ${getComponentHeight(false)}`}
           ></div>
         </div>
       )}
       {position === null && (
         <div
-          className={`z-1 mr-[16px] w-[1px] z-0 bg-black 
+          className={`z-1 mr-[16px] w-[1.2px] z-0 bg-black 
               ${getComponentHeight(true)}`}
         ></div>
       )}

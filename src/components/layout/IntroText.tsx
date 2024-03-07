@@ -6,7 +6,7 @@ const IntroText = ({ details }: { details: DetailsScheme | null }) => {
   }
 
   return (
-    <div className="flex flex-col gap-[1rem]">
+    <div className="flex flex-col gap-[1rem] mr-[1rem] w-[50rem]">
       <p className="text-[28px] font-bold text-[#EE583F] leading-tight font-serif">
         {details.header.start_text}
       </p>
