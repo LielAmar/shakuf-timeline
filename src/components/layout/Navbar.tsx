@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-import { DetailsScheme } from "@/types/schemes";
+import { DetailsScheme, NavbarItem } from "@/types/schemes";
 
 const Navbar = ({ details }: { details: DetailsScheme | null }) => {
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
@@ -41,16 +41,21 @@ const Navbar = ({ details }: { details: DetailsScheme | null }) => {
         className="w-[67%] flex flex-row justify-between py-[5px]
         border-b-[1px] border-t-[1px] border-black"
       >
-        {details.navbar.map((item: any, index: number) => {
+        {details.navbar.map((item: NavbarItem, index: number) => {
           return (
-            <p
+            <a
               className={`text-[18px] font-bold font-sans 
-               ${item.includes("{current}") ? "text-[#EE583F]" : "text-black"}
+               ${
+                 item.name.includes("{current}")
+                   ? "text-[#EE583F]"
+                   : "text-black"
+               }
                cursor-pointer`}
               key={index}
+              href={item.link}
             >
-              {item.replace("{current}", details.page_title)}
-            </p>
+              {item.name.replace("{current}", details.page_title)}
+            </a>
           );
         })}
       </div>

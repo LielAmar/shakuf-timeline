@@ -1,6 +1,11 @@
 import { Article } from "@/types/article";
 import { Event } from "@/types/event";
 
+export type NavbarItem = {
+  name: string;
+  link: string;
+}
+
 export type DetailsScheme = {
   page_name: string;
   
@@ -13,7 +18,7 @@ export type DetailsScheme = {
     rest_text: string;
   }
 
-  navbar: string[];
+  navbar: NavbarItem[];
 }
 
 export type ContentScheme = {

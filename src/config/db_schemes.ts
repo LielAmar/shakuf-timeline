@@ -10,15 +10,42 @@ export const mahapeha_details_scheme = {
   },
 
   navbar: [
-    "מלחמה עזה",
-    "משפט המולים",
-    "תיקון הכנסת",
-    "שקיפות",
-    "לוביסטים",
-    "משבר האקלים",
-    "{current}",
-    "העין",
-    "המקום",
+    {
+      name: "מלחמת עזה",
+      link: "https://shakuf.co.il/category/gaza-war"
+    },
+    {
+      name: "משפט המול\"ים",
+      link: "https://shakuf.co.il/tag/משפט-המולים"
+    },
+    {
+      name: "תיקון הכנסת",
+      link: "https://shakuf.co.il/category/topic/knesset"
+    },
+    {
+      name: "שקיפות",
+      link: "https://shakuf.co.il/tag/שקיפות"
+    },
+    {
+      name: "לוביסטים",
+      link: "https://shakuf.co.il/tag/לוביסטים"
+    },
+    {
+      name: "משבר האקלים",
+      link: "https://shakuf.co.il/category/topic/green"
+    },
+    {
+      name: "{current}",
+      link: "#"
+    },
+    {
+      name: "העין",
+      link: "https://www.the7eye.org.il"
+    },
+    {
+      name: "המקום",
+      link: "https://www.ha-makom.co.il"
+    }
   ]
 }
 
@@ -62,7 +89,7 @@ export const mahapeha_content_scheme = {
     },
     {
       title: `היום`,
-      date: "2024-01-02"
+      date: "2024-01-25"
     },
   ],
 
@@ -475,15 +502,42 @@ export const gaza_war_details_scheme = {
   },
 
   navbar: [
-    "מלחמה עזה",
-    "משפט המולים",
-    "תיקון הכנסת",
-    "שקיפות",
-    "לוביסטים",
-    "משבר האקלים",
-    "{current}",
-    "העין",
-    "המקום",
+    {
+      name: "מלחמת עזה",
+      link: "https://shakuf.co.il/category/gaza-war"
+    },
+    {
+      name: "משפט המול\"ים",
+      link: "https://shakuf.co.il/tag/משפט-המולים"
+    },
+    {
+      name: "תיקון הכנסת",
+      link: "https://shakuf.co.il/category/topic/knesset"
+    },
+    {
+      name: "שקיפות",
+      link: "https://shakuf.co.il/tag/שקיפות"
+    },
+    {
+      name: "לוביסטים",
+      link: "https://shakuf.co.il/tag/לוביסטים"
+    },
+    {
+      name: "משבר האקלים",
+      link: "https://shakuf.co.il/category/topic/green"
+    },
+    {
+      name: "{current}",
+      link: "#"
+    },
+    {
+      name: "העין",
+      link: "https://www.the7eye.org.il"
+    },
+    {
+      name: "המקום",
+      link: "https://www.ha-makom.co.il"
+    }
   ]
 }
 
