@@ -3,60 +3,6 @@ import Image from "next/image";
 import { Content } from "@/types/content";
 import { useState } from "react";
 
-const analyzeContent = (content: Content[]) => {
-  const min_date = {
-    year: 3000,
-    month: 13,
-  };
-
-  const max_date = {
-    year: 0,
-    month: 0,
-  };
-
-  // Loop over all the content we have and update min and max dates.
-  content.forEach((c) => {
-    let date = new Date(c.date);
-
-    if (date.getFullYear() < min_date.year) {
-      min_date.year = date.getFullYear();
-
-      if (date.getMonth() < min_date.month) min_date.month = date.getMonth();
-    }
-
-    if (date.getFullYear() > max_date.year) {
-      max_date.year = date.getFullYear();
-
-      if (date.getMonth() > max_date.month) max_date.month = date.getMonth();
-    }
-  });
-
-  // Create an object with all the months and their content.
-  const content_per_month: { [date: string]: Content[] } = {};
-
-  for (let i = min_date.year; i <= max_date.year; i++) {
-    let j = i == min_date.year ? min_date.month : 0;
-    let end = i == max_date.year ? max_date.month : 11;
-
-    for (j; j <= end; j++) {
-      let dateString = i + "-" + (j + 1);
-      content_per_month[dateString] = [];
-    }
-  }
-
-  content.forEach((c) => {
-    const date = new Date(c.date);
-    const dateString = date.getFullYear() + "-" + (date.getMonth() + 1);
-    content_per_month[dateString].push(c);
-  });
-
-  // Calculate the number of months between the min and max date.
-  const number_of_months =
-    (max_date.year - min_date.year) * 12 + max_date.month - min_date.month + 1;
-
-  return { content_per_month, number_of_months };
-};
-
 const Separator = ({ height, offset }: { height: number; offset: number }) => {
   return (
     <div
@@ -68,7 +14,7 @@ const Separator = ({ height, offset }: { height: number; offset: number }) => {
   );
 };
 
-const Minimap = ({ content }: { content: Content[] | null }) => {
+const Minimap = ({ content }: { content: Content[] }) => {
   if (!content) {
     return <></>;
   }
