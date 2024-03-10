@@ -76,7 +76,7 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
   const [selectedItem, setSelectedItem] = useState("");
 
   const offset = 5;
-  const per_day_multiplier = 8;
+  const per_day_multiplier = 4.75;
   const event_height = 12;
   const article_height = 13;
 
@@ -203,7 +203,7 @@ const Minimap = ({ content }: { content: Content[] | null }) => {
               <a
                 href={`#${c.date}`}
                 style={{ top: current_offset + offset }}
-                className={`absolute h-[12px] w-[23px] left-[-22.5px] cursor-pointer`}
+                className={`absolute h-[12px] w-[23px] left-[-21.75px] cursor-pointer`}
               >
                 <Image
                   src={

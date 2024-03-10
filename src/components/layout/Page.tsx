@@ -17,9 +17,9 @@ const Page = ({
     <main className="flex flex-col min-h-screen justify-between">
       <Navbar details={details} />
 
-      <div className="w-[100%] grid grid-cols-6 grid-rows-1 mt-[12rem]">
+      <div className="w-[100%] grid grid-cols-6 grid-rows-1 mt-[180px]">
         <div
-          className="flex flex-col gap-[1.5rem]
+          className="flex flex-col gap-[37px]
          row-start-1 col-start-2 col-end-5"
         >
           <IntroText details={details} />
