@@ -149,7 +149,7 @@ const Minimap = ({ content }: { content: Content[] }) => {
               <a
                 href={`#${c.date}`}
                 style={{ top: current_offset + offset }}
-                className={`absolute h-[12px] w-[23px] left-[-21.75px] cursor-pointer`}
+                className={`absolute h-[12px] w-[23px] left-[-22.25px] cursor-pointer`}
               >
                 <Image
                   src={
