@@ -27,7 +27,7 @@ const Navbar = ({ details }: { details: DetailsScheme | null }) => {
       className={`w-[100%] flex flex-col items-center gap-[18px]
       ${hasScrolled ? "pt-[15px]" : "pt-[18px]"}
       fixed top-0 right-0 transition-all duration-300
-      bg-gradient-to-b from-[#FAF6F1] from-85% via-[#FAF6F1] to-transparent z-50`}
+      bg-gradient-to-b from-[#FAF6F1] from-35% via-[#FAF6F1] to-[rgba(250,246,241,0.75)] z-50`}
     >
       <Image
         className=""
