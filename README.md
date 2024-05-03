@@ -1,3 +1,1 @@
-# Shakuf Timeline
-
-[Vercel Deployment](http://shakuftimeline.vercel.app)
+This is a [Next.js](https://nextjs.org/) project which was developed under the [Product Development Jam](https://www.bezalel.ac.il/node/654347) course at the [Hebrew University of Jerusalem](https://en.huji.ac.il/) and [Bezalel Academy of Arts and Design](https://www.bezalel.ac.il/).
